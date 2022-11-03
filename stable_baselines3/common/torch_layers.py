@@ -192,6 +192,14 @@ class MlpExtractor(nn.Module):
                 if "vf" in layer:
                     assert isinstance(layer["vf"], list), "Error: net_arch[-1]['vf'] must contain a list of integers."
                     value_only_layers = layer["vf"]
+
+                # [Temp] Add shared net before pi/vf
+                # shared_net.append(nn.Linear(last_layer_dim_shared, 16))  # add linear of size layer
+                # shared_net.append(nn.Tanh())
+                # #shared_net.append(nn.ReLU())
+                # last_layer_dim_shared = 16
+                # [Temp] Add shared net before pi/vf
+
                 break  # From here on the network splits up in policy and value network
 
         last_layer_dim_pi = last_layer_dim_shared

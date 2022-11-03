@@ -417,6 +417,7 @@ class ActorCriticPolicy(BasePolicy):
         lr_schedule: Schedule,
         net_arch: Optional[List[Union[int, Dict[str, List[int]]]]] = None,
         activation_fn: Type[nn.Module] = nn.Tanh,
+        # activation_fn: Type[nn.Module] = nn.ReLU,
         ortho_init: bool = True,
         use_sde: bool = False,
         log_std_init: float = 0.0,
@@ -453,6 +454,9 @@ class ActorCriticPolicy(BasePolicy):
                 net_arch = []
             else:
                 net_arch = [dict(pi=[64, 64], vf=[64, 64])]
+                # net_arch = [dict(pi=[32, 32], vf=[32, 32])]
+                # net_arch = [dict(pi=[16, 16], vf=[16, 16])]
+                # net_arch = [dict(pi=[8, 8], vf=[8, 8])]
 
         self.net_arch = net_arch
         self.activation_fn = activation_fn
